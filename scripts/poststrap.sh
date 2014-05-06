@@ -5,9 +5,8 @@ mkswap /swapfile1
 swapon /swapfile1
 echo "/swapfile1  none  swap  sw  0  0" >> /etc/fstab
 
-apt-get install -y linux-headers-$(uname -r)
-mount /dev/cdrom /media/cdrom
-sh /media/cdrom/VBoxLinuxAdditions.run
+# One of these brings in the x11 utils as a recommends, which is really not needed
+apt-get install --no-install-recommends virtualbox-guest-dkms virtualbox-guest-utils
 
 mv /etc/rc.local.bak /etc/rc.local
 shutdown -h now
